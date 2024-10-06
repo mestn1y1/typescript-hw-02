@@ -1,32 +1,41 @@
 import { useState, useEffect, useRef } from "react";
 
 import "./App.css";
-import SearchBAr from "../SearchBar/SearchBar";
+import { SearchBar } from "../SearchBar/SearchBar";
 import searchImagesApi from "../searchImagesApi";
-import ImageGallery from "../ImageGallery/ImageGallery";
-import ImageModal from "../ImageModal/ImageModal";
-import Loader from "../Loader/Loader";
-import ErrorMessage from "../ErrorMessage/ErrorMessage";
-import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
+import { ImageGallery } from "../ImageGallery/ImageGallery";
+import { ImageModal } from "../ImageModal/ImageModal";
+import { Loader } from "../Loader/Loader";
+import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
+import { LoadMoreBtn } from "../LoadMoreBtn/LoadMoreBtn";
 import toast, { Toaster } from "react-hot-toast";
 
-export default function App() {
-  const [images, setImages] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [modalImage, setModalImage] = useState(null);
-  const [topic, setTopic] = useState("");
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const loadMoreBtnRef = useRef(null);
+export interface Image {
+  id: number;
+  urls: {
+    regular: string;
+    small_s3: string;
+  };
+  description?: string;
+}
 
-  const handleLoadMore = () => {
+export const App: React.FC = () => {
+  const [images, setImages] = useState<Image[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [modalImage, setModalImage] = useState<Image | null>(null);
+  const [topic, setTopic] = useState<string>("");
+  const [page, setPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(1);
+  const loadMoreBtnRef = useRef<HTMLButtonElement | null>(null);
+
+  const handleLoadMore = (): void => {
     if (page < totalPages) {
       setPage(page + 1);
     }
   };
 
-  const handleSearch = (newTopic) => {
+  const handleSearch = (newTopic: string): void => {
     setTopic(newTopic);
     setPage(1);
     setImages([]);
@@ -36,7 +45,7 @@ export default function App() {
   useEffect(() => {
     if (!topic) return;
 
-    const getImages = async () => {
+    const getImages = async (): Promise<void> => {
       try {
         setLoading(true);
         const { images: newImages, totalPages: newTotalPages } =
@@ -67,17 +76,17 @@ export default function App() {
     }
   }, [images, page]);
 
-  const openModal = (image) => {
+  const openModal = (image: Image | null): void => {
     setModalImage(image);
   };
 
-  const closeModal = () => {
+  const closeModal = (): void => {
     setModalImage(null);
   };
 
   return (
     <>
-      <SearchBAr onSearch={handleSearch} />
+      <SearchBar onSearch={handleSearch} />
       <Toaster />
       {error ? (
         <ErrorMessage />
@@ -105,4 +114,4 @@ export default function App() {
       )}
     </>
   );
-}
+};

@@ -1,7 +1,18 @@
 import Modal from "react-modal";
 import css from "./ImageModal.module.css";
-export default function ImageModal({ isOpen, onRequestClose, image }) {
-  console.log(image);
+import { Image } from "../App/App";
+
+interface ImageModalProps {
+  isOpen: boolean;
+  onRequestClose: () => void;
+  image: Image | null;
+}
+
+export const ImageModal: React.FC<ImageModalProps> = ({
+  isOpen,
+  onRequestClose,
+  image,
+}) => {
   return (
     <Modal
       isOpen={isOpen}
@@ -10,11 +21,15 @@ export default function ImageModal({ isOpen, onRequestClose, image }) {
       className={css.modal}
       overlayClassName={css.overlay}
     >
-      <img
-        src={image.urls.regular}
-        alt={image.description}
-        className={css.img}
-      />
+      {image ? (
+        <img
+          src={image.urls.regular}
+          alt={image.description || "ImageUrl"}
+          className={css.img}
+        />
+      ) : (
+        <p>No image available</p>
+      )}
     </Modal>
   );
-}
+};

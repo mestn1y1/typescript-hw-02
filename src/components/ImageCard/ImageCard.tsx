@@ -1,13 +1,20 @@
+import { Image } from "../App/App";
 import css from "./ImageCard.module.css";
-export default function ImageCard({ image, onOpenModal }) {
+
+interface ImageCardProps {
+  image: Image;
+  onOpenModal: (image: Image) => void;
+}
+
+export const ImageCard: React.FC<ImageCardProps> = ({ image, onOpenModal }) => {
   return (
     <div className={css.itemImg}>
       <img
         onClick={() => onOpenModal(image)}
         src={image.urls.small_s3}
-        alt={image.description}
+        alt={image.description || "Image"}
         className={css.galleryImg}
       />
     </div>
   );
-}
+};
