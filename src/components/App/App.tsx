@@ -19,7 +19,7 @@ export const App: React.FC = () => {
   const [topic, setTopic] = useState<string>("");
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
-  const loadMoreBtnRef = useRef<HTMLButtonElement | null>(null);
+  const loadMoreBtnRef = useRef<HTMLButtonElement>(null);
 
   const handleLoadMore = (): void => {
     if (page < totalPages) {

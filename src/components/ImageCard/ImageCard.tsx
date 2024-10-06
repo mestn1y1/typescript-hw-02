@@ -1,7 +1,7 @@
 import { Image } from '../App/App.types';
 import css from "./ImageCard.module.css";
 
-interface ImageCardProps {
+type ImageCardProps = {
   image: Image;
   onOpenModal: (image: Image) => void;
 }

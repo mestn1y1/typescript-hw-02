@@ -1,9 +1,9 @@
 import { toast } from "react-hot-toast";
 import css from "./SearchBar.module.css";
 
-interface SearchBarProps {
+type SearchBarProps = {
   onSearch: (newTopic: string) => void;
-}
+};
 
 export const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   const handleSubmit = (evt: React.FormEvent<HTMLFormElement>): void => {

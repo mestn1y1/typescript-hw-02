@@ -2,7 +2,7 @@ import { Image } from "../App/App.types";
 import { ImageCard } from "../ImageCard/ImageCard";
 import css from "./ImageGallery.module.css";
 
-interface ImageGalleryProps {
+type ImageGalleryProps = {
   images: Image[];
   onOpenModal: (image: Image) => void;
 }
