@@ -107,7 +107,7 @@ export const App: React.FC = () => {
       )}
       {modalImage && (
         <ImageModal
-          isOpen={modalImage}
+          isOpen={modalImage ? true : false}
           onRequestClose={closeModal}
           image={modalImage}
         />
