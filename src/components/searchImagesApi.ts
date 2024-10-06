@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Image } from "./App/App";
+import { Image } from "./App/App.types";
 
 const accessKey = "1gIVIxzxLHTsUa4ePPB1HgijWCWZQL8olEwVfgd2_gc";
 
