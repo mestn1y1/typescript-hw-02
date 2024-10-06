@@ -1,0 +1,17 @@
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: blueviolet;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+.btn {
+  margin-left: 20px;
+  border: none;
+}
+
+.form {
+  margin-left: auto;
+}
