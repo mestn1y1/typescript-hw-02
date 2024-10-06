@@ -10,14 +10,6 @@ import { ErrorMessage } from "../ErrorMessage/ErrorMessage";
 import { LoadMoreBtn } from "../LoadMoreBtn/LoadMoreBtn";
 import toast, { Toaster } from "react-hot-toast";
 import { Image } from "./App.types";
-// export interface Image {
-//   id: number;
-//   urls: {
-//     regular: string;
-//     small_s3: string;
-//   };
-//   description?: string;
-// }
 
 export const App: React.FC = () => {
   const [images, setImages] = useState<Image[]>([]);
